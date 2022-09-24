@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
-  const login = (e) => {
+  const handleLogin = (e) => {
     // e.preventDefault();
     // Do the Login logic here
   };
@@ -26,7 +26,7 @@ const Login = () => {
             <input type="password" placeholder="Password" />
             <Button
               type="submit"
-              onClick={login()}
+              onClick={handleLogin()}
               className="login__button"
               variant="contained"
             >

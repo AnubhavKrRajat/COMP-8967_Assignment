@@ -1,0 +1,30 @@
+package com.example.AuthenticationApp.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.example.AuthenticationApp.model.User;
+import com.example.AuthenticationApp.service.UserService;
+
+public class userController {
+	@Autowired 
+	private UserService userService;
+	
+	//Registration
+    @PostMapping("/RegisterUser")
+ 
+    public User saveUser(@Valid @RequestBody User user)
+    {
+        return userService.saveUser(user);
+    }
+    
+ // Read operation
+    @PostMapping("/LoginUser")
+ 
+    public User getUserDetailsAndLogin(@Valid @RequestBody User user)
+    {
+        return userService.fetchUserDetails(user.getEmail(), user.getPassword());
+    }
+
+}

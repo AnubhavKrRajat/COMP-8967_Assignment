@@ -1,0 +1,37 @@
+package com.example.AuthenticationApp.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import com.example.AuthenticationApp.model.User;
+import com.example.AuthenticationApp.service.UserService;
+
+@Controller
+public class userController {
+	@Autowired 
+	private UserService userService;
+	
+	//Registration
+    @PostMapping("/RegisterUser")
+ 
+    public ResponseEntity saveUser(@Valid @RequestBody User user)
+    {
+    	userService.saveUser(user);
+    	return ResponseEntity.ok(HttpStatus.OK);
+    }
+    
+ // Read operation
+    @PostMapping("/LoginUser")
+ 
+    public List<User> getUserDetailsAndLogin(@Valid @RequestBody User user)
+    {
+        return userService.fetchUserDetails(user.getEmail(), user.getPassword());
+    }
+
+}

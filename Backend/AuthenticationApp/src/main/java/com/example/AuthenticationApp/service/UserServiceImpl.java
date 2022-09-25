@@ -14,11 +14,41 @@ public class UserServiceImpl implements UserService
 	@Autowired
 	UserRepository userRepository;
 	
-
+	User saveUser;
+	
 	@Override
 	public User saveUser(User user) 
 	{
-		return userRepository.save(user);
+		if (Objects.nonNull(user.getName()) && !"".equalsIgnoreCase(user.getName())) 
+	    {
+			saveUser.setName(user.getName());
+	    }
+	        
+	    if (Objects.nonNull(user.getEmail()) && !"".equalsIgnoreCase(user.getEmail())) 
+	    {
+	    	saveUser.setEmail(user.getEmail());
+	    }
+	        
+	    if (Objects.nonNull(user.getPhoto()) && !"".equalsIgnoreCase(user.getPhoto())) 
+	    {
+	    	saveUser.setPhoto(user.getPhoto());
+	    }
+	        
+	    if (Objects.nonNull(user.getBio()) && !"".equalsIgnoreCase(user.getBio())) 
+	    {
+	      	saveUser.setBio(user.getBio());
+	    }
+	        
+	    if (Objects.nonNull(user.getPhone()) && !"".equalsIgnoreCase(user.getPhone())) 
+	    {
+	     	saveUser.setPhone(user.getPhone());
+	    }
+	        
+	    if (Objects.nonNull(user.getPassword()) && !"".equalsIgnoreCase(user.getPassword())) 
+	    {
+	     	saveUser.setPassword(user.getPassword());
+	    }
+	    return userRepository.save(saveUser);
 	}
 
 	@Override
@@ -28,43 +58,43 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public User updateUser(User user, String userId) 
+	public User updateUser(User user, String email) 
 	{
 		{
 			 
-	        User userInfo = userRepository.findById(userId).get();
+	        saveUser = userRepository.findByEmail(email);
 	 
 	        if (Objects.nonNull(user.getName()) && !"".equalsIgnoreCase(user.getName())) 
 	        {
-	            userInfo.setName(user.getName());
+	        	saveUser.setName(user.getName());
 	        }
 	        
 	        if (Objects.nonNull(user.getEmail()) && !"".equalsIgnoreCase(user.getEmail())) 
 	        {
-	            userInfo.setEmail(user.getEmail());
+	        	saveUser.setEmail(user.getEmail());
 	        }
 	        
 	        if (Objects.nonNull(user.getPhoto()) && !"".equalsIgnoreCase(user.getPhoto())) 
 	        {
-	            userInfo.setPhoto(user.getPhoto());
+	        	saveUser.setPhoto(user.getPhoto());
 	        }
 	        
 	        if (Objects.nonNull(user.getBio()) && !"".equalsIgnoreCase(user.getBio())) 
 	        {
-	            userInfo.setBio(user.getBio());
+	        	saveUser.setBio(user.getBio());
 	        }
 	        
 	        if (Objects.nonNull(user.getPhone()) && !"".equalsIgnoreCase(user.getPhone())) 
 	        {
-	            userInfo.setPhone(user.getPhone());
+	        	saveUser.setPhone(user.getPhone());
 	        }
 	        
 	        if (Objects.nonNull(user.getPassword()) && !"".equalsIgnoreCase(user.getPassword())) 
 	        {
-	            userInfo.setPassword(user.getPassword());
+	        	saveUser.setPassword(user.getPassword());
 	        }
 	    
-	        return userRepository.save(userInfo);
+	        return userRepository.save(saveUser);
 		}
 	}
 

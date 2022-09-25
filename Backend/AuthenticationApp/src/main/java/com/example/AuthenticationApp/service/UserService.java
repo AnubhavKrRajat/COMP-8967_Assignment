@@ -13,6 +13,6 @@ public interface UserService {
 	boolean CheckUserAlreadyExist(String email);
 	
 	//Update User Details
-	User updateUser(User user, String Id);
+	User updateUser(User user, String email);
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.AuthenticationApp.model.User;
 import com.example.AuthenticationApp.service.UserService;
 
+@CrossOrigin
 @Controller
 public class userController {
 	@Autowired 
@@ -16,7 +17,6 @@ public class userController {
 	
 	//Registration
     @PostMapping("/RegisterUser")
- 
     public ResponseEntity saveUser(@Valid @RequestBody User user)
     {
     	if(userService.CheckUserAlreadyExist(user.getEmail())){
@@ -48,5 +48,12 @@ public class userController {
         }
     }
     
+    @PutMapping("/UpdateUser") 
+    public ResponseEntity updateUserData(@Valid @RequestBody User user)
+    {
+    		userService.updateUser(user, user.getEmail());
+    		return new ResponseEntity<>("User Info Updated Successfully",HttpStatus.OK);
+    	}
+    	 
 
 }

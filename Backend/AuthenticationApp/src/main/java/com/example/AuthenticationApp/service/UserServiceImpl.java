@@ -54,7 +54,15 @@ public class UserServiceImpl implements UserService
 	@Override
 	public User fetchUserDetails(String email, String password) 
 	{
-		return userRepository.findByEmailAndPassword(email,password);
+		User u = new User();
+		saveUser = userRepository.findByEmailAndPassword(email,password);
+		u.setBio(saveUser.getBio());
+		u.setEmail(saveUser.getEmail());
+		u.setId(saveUser.getId());
+		u.setName(saveUser.getName());
+		u.setPhone(saveUser.getPhone());
+		u.setPhoto(saveUser.getPhoto());
+		return u;
 	}
 
 	@Override

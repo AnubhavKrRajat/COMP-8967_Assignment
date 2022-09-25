@@ -1,0 +1,5 @@
+package com.example.AuthenticationApp.model;
+
+public class User {
+
+}

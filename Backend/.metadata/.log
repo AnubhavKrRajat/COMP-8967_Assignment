@@ -564,3 +564,45 @@ java.lang.InterruptedException
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:13:13.007
 !MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.HaZVrPjQ => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:23:55.758
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:23:55.758
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@174fb416[org.springframework.tooling.boot.ls:1.32.0.202203131529(id=479)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:23:55.759
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:04.274
+!MESSAGE Boot LS startup time from start to initialized: 8513ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:04.517
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.btLWCOGnisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:04.518
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:04.548
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:04.548
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:04.549
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:04.549
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.btLWCOGn => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:04.558
+!MESSAGE classpath=78 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:04.563
+!MESSAGE buffering callback sts4.classpath.btLWCOGn AuthenticationApp false 78
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:04.563
+!MESSAGE executing callback sts4.classpath.btLWCOGn 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:05.117
+!MESSAGE executing callback sts4.classpath.btLWCOGn SUCCESS [done]

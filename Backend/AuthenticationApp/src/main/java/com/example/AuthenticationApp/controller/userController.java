@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import com.example.AuthenticationApp.model.User;
 import com.example.AuthenticationApp.service.UserService;
 
-@CrossOrigin
+
 @Controller
 public class userController {
 	@Autowired 
 	private UserService userService;
 	
 	//Registration
+	@CrossOrigin
     @PostMapping("/RegisterUser")
     public ResponseEntity saveUser(@Valid @RequestBody User user)
     {
@@ -32,6 +33,7 @@ public class userController {
     }
     
    // Login User and return user data
+	@CrossOrigin
     @PostMapping("/LoginUser")
     @ResponseBody
     public ResponseEntity getUserDetailsAndLogin(@Valid @RequestBody User user)
@@ -47,7 +49,8 @@ public class userController {
         	return new ResponseEntity<>("Incorrect Username or Password",HttpStatus.NOT_FOUND);
         }
     }
-    
+	
+	@CrossOrigin
     @PutMapping("/UpdateUser") 
     public ResponseEntity updateUserData(@Valid @RequestBody User user)
     {

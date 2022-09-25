@@ -5,14 +5,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 @Document(collection = "UserDB")
-@NoArgsConstructor
-@AllArgsConstructor
 public class User {
 	@Id
 	private String Id;
@@ -26,8 +19,7 @@ public class User {
 	@Email
 	private String email;
 	
-	public User(@NotNull String id, String photo, String name, String bio, String phone, @NotNull @Email String email,
-			@NotNull String password) {
+	public User(String id, String photo, String name, String bio, String phone,String email,String password) {
 		super();
 		Id = id;
 		this.photo = photo;
@@ -40,8 +32,6 @@ public class User {
 	
 	public User() {
 	}
-
-	@NotNull
 	private String password;
 	
 	public String getId() {

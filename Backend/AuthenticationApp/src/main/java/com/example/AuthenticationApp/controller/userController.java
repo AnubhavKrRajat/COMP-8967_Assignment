@@ -1,8 +1,4 @@
 package com.example.AuthenticationApp.controller;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
 import com.example.AuthenticationApp.model.User;
 import com.example.AuthenticationApp.service.UserService;
 
@@ -37,7 +31,7 @@ public class userController {
     	
     }
     
- // Read operation
+   // Login User and return user data
     @PostMapping("/LoginUser")
     @ResponseBody
     public ResponseEntity getUserDetailsAndLogin(@Valid @RequestBody User user)
@@ -53,5 +47,6 @@ public class userController {
         	return new ResponseEntity<>("Incorrect Username or Password",HttpStatus.NOT_FOUND);
         }
     }
+    
 
 }

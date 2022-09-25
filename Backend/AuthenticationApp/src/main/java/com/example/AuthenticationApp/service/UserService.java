@@ -1,7 +1,4 @@
 package com.example.AuthenticationApp.service;
-
-import java.util.List;
-
 import com.example.AuthenticationApp.model.User;
 
 public interface UserService {

@@ -606,3 +606,15 @@ java.lang.InterruptedException
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:24:05.117
 !MESSAGE executing callback sts4.classpath.btLWCOGn SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:50:36.664
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.btLWCOGn
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:50:36.665
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.btLWCOGn
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:50:36.665
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-09-25 03:50:36.666
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.btLWCOGn => OK

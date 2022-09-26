@@ -56,5 +56,5 @@
   text-decoration: none;
 }
 .buttton_logout {
-  color: red;
+  color: red !important;
 }

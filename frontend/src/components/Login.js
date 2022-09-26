@@ -4,12 +4,13 @@ import { Link, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import GoogleLogin from "react-google-login";
 
 const Login = () => {
   const [err, setErr] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoggedin, setIsLoggedIn] = useState(false);
+
   let navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -31,9 +32,11 @@ const Login = () => {
       );
 
       if (resp.status === 404) {
-        setErr("Email or Password not Found");
+        setErr("User not Found");
       } else {
         setErr("is logged in");
+        console.log(resp.body);
+        localStorage.setItem("email", `${email}`);
         alert("User Logged In Successfully!");
         return navigate("/");
       }
@@ -45,6 +48,7 @@ const Login = () => {
   const handleOauth = (e) => {
     //Handles the Oauth
   };
+  const handleOauthFailure = (e) => {};
 
   return (
     <div className="app__login">
@@ -94,19 +98,27 @@ const Login = () => {
             <div className="vl"></div>
           </div>
           <div className="login__google">
-            <Button
-              type="submit"
-              onClick={handleOauth}
-              className="login__button__google"
-              variant="outlined"
-            >
-              <img
-                className="google_icon"
-                src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-google-icon-logo-png-transparent-svg-vector-bie-supply-14.png"
-                alt=""
-              />
-              Sign In with Google
-            </Button>
+            {/* <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              buttonText="Sign In with Google"
+              onSuccess={handleOauth}
+              onFailure={handleOauthFailure}
+              cookiePolicy={"single_host_origin"}
+            > */}
+            {/* <Button
+                type="submit"
+                onClick={handleOauth}
+                className="login__button__google"
+                variant="outlined"
+              >
+                <img
+                  className="google_icon"
+                  src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-google-icon-logo-png-transparent-svg-vector-bie-supply-14.png"
+                  alt=""
+                /> */}
+            {/* Sign In with Google
+              </Button> */}
+            {/* </GoogleLogin> */}
           </div>
         </div>
       </div>

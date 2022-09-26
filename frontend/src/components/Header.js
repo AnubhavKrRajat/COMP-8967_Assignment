@@ -1,28 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Header.css";
 import KeyIcon from "@mui/icons-material/Key";
 import Login from "./Login";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Button } from "@mui/material";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, useNavigate, Link } from "react-router-dom";
+import Home from "./Home";
 
 const Header = () => {
+  let navigate = useNavigate();
+  const [loginData, setLoginData] = useState("");
+  useEffect(() => {
+    localStorage.getItem("email")
+      ? setLoginData(localStorage.getItem("email"))
+      : setLoginData("");
+  }, [loginData]);
+
+  const handleLogout = () => {
+    navigate("/");
+    localStorage.removeItem("email");
+    window.location.reload(false);
+  };
+  const sendToProfile = (e) => {
+    e.preventDefault();
+    navigate("/profile");
+  };
   return (
     <div className="header">
       <img className="header__logo" src="header-logo.png" alt="" />
       <div className="header__appNameSection">
         <p className="header__name">User Authentication App</p>
+
         <KeyIcon className="header__keyIcon" />
       </div>
       <div className="header__options">
         <div className="header__option">
-          <AccountCircleIcon />
-          <span className="header__option__userName"> Guest </span>
+          {loginData ? (
+            <AccountCircleIcon onClick={sendToProfile} />
+          ) : (
+            <AccountCircleIcon />
+          )}
+
+          {loginData ? (
+            <span className="header__option__userName"> {loginData} </span>
+          ) : (
+            <span className="header__option__userName"> Guest </span>
+          )}
         </div>
         <div className="header__option">
-          <Link to="/login" className="header__link">
-            <Button variant="contained">Log in</Button>
-          </Link>
+          {loginData ? (
+            <Link to="/" className="header__link" onClick={handleLogout}>
+              <Button
+                variant="contained"
+                className="button_logout"
+                type="submit"
+              >
+                Log out
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/login" className="header__link">
+              <Button variant="contained">Log in</Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

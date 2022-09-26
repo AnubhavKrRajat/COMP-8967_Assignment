@@ -17,8 +17,9 @@
   width: 800px;
   display: flex;
   flex-direction: row;
-  border: 1px solid lightgray;
+  border: none;
   height: fit-content;
+  box-shadow: 3px 3px 3px 3px #888888;
 }
 
 .login__container__email {
@@ -29,13 +30,16 @@
   padding: 20px;
   padding-top: 80px;
 }
+.error_message {
+  color: red;
+}
 .login__container__email > h1 {
   font-weight: 500;
   margin-bottom: 18px;
   text-align: center;
   color: rgb(36, 36, 36);
 }
-.login__container__email > form > h5 {
+.login__container__email > form > label {
   margin-bottom: 10px;
   font-size: medium;
   color: rgb(36, 36, 36);
@@ -103,17 +107,16 @@
   padding-left: 18px;
   padding-right: 30px;
 }
-.google_icon{
-     object-fit: contain;
-     height: 20px;
-     width: 30px;
-     margin-left: -40px;
-     margin-right: 20px;
+.google_icon {
+  object-fit: contain;
+  height: 20px;
+  width: 30px;
+  margin-left: -40px;
+  margin-right: 20px;
 }
 .login__button__google {
   color: white !important;
   border-color: white !important;
   height: 45px;
   width: 100%;
-  
 }

@@ -1,16 +1,51 @@
 import { Button } from "@mui/material";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Routes, Route } from "react-router-dom";
+import Home from "./Home";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const handleLogin = (e) => {
-    // e.preventDefault();
-    // Do the Login logic here
+  const [err, setErr] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+  let navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    console.log(email, password);
+    try {
+      console.log("sending request");
+      let resp = await fetch(
+        "https://internship-project-auth.herokuapp.com/LoginUser",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            password: password,
+            email: email,
+          }),
+        }
+      );
+
+      if (resp.status === 404) {
+        setErr("Email or Password not Found");
+      } else {
+        setErr("is logged in");
+        alert("User Logged In Successfully!");
+        return navigate("/");
+      }
+    } catch (e) {
+      console.log(err.message);
+    }
   };
+
   const handleOauth = (e) => {
     //Handles the Oauth
   };
+
   return (
     <div className="app__login">
       <Link to="/">
@@ -19,27 +54,36 @@ const Login = () => {
       <div className="login__container">
         <div className="login__container__email">
           <h1>Login</h1>
-          <form action="#">
-            <h5>Email</h5>
-            <input type="email" placeholder="Email" />
-            <h5>Password</h5>
-            <input type="password" placeholder="Password" />
-            <Button
-              type="submit"
-              onClick={handleLogin()}
-              className="login__button"
-              variant="contained"
-            >
+          <p className="error_message">{err}</p>
+          <form onSubmit={handleLogin} action="#">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <Button type="submit" className="login__button" variant="contained">
               Sign In
             </Button>
           </form>
           <p>
-            Having Trouble Signing In ? <a href="/register">Forgot Password</a>{" "}
-            ?
+            Trouble Signing In ? <a href="/register">Forgot Password</a> ?
           </p>
           <span>Or</span>
           <p>
-            {" "}
             New User ? <a href="/register">Create a Account</a>{" "}
           </p>
         </div>
@@ -52,7 +96,7 @@ const Login = () => {
           <div className="login__google">
             <Button
               type="submit"
-              onClick={handleOauth()}
+              onClick={handleOauth}
               className="login__button__google"
               variant="outlined"
             >

@@ -21,9 +21,7 @@ const Header = () => {
         </div>
         <div className="header__option">
           <Link to="/login" className="header__link">
-            <Button variant="contained">
-              Login
-            </Button>
+            <Button variant="contained">Log in</Button>
           </Link>
         </div>
       </div>

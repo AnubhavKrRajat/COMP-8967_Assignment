@@ -98,14 +98,14 @@ const Login = () => {
             <div className="vl"></div>
           </div>
           <div className="login__google">
-            {/* <GoogleLogin
+            <GoogleLogin
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               buttonText="Sign In with Google"
               onSuccess={handleOauth}
               onFailure={handleOauthFailure}
               cookiePolicy={"single_host_origin"}
-            > */}
-            {/* <Button
+            >
+              {/* <Button
                 type="submit"
                 onClick={handleOauth}
                 className="login__button__google"
@@ -116,9 +116,9 @@ const Login = () => {
                   src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-google-icon-logo-png-transparent-svg-vector-bie-supply-14.png"
                   alt=""
                 /> */}
-            {/* Sign In with Google
+              {/* Sign In with Google
               </Button> */}
-            {/* </GoogleLogin> */}
+            </GoogleLogin>
           </div>
         </div>
       </div>

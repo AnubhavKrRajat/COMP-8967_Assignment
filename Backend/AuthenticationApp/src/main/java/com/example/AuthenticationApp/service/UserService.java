@@ -1,5 +1,4 @@
 package com.example.AuthenticationApp.service;
-import java.util.Optional;
 
 import com.example.AuthenticationApp.model.User;
 
@@ -19,6 +18,7 @@ public interface UserService {
 	
 	//reset token finding
 	User findUserByResetToken(String resetToken);
+	
 	//Login User and get details of user
 	User findUserByEmail(String email);
 	

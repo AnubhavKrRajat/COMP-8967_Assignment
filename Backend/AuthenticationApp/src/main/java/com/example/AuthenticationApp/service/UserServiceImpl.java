@@ -1,6 +1,5 @@
 package com.example.AuthenticationApp.service;
 import java.util.Objects;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.AuthenticationApp.model.User;
 import com.example.AuthenticationApp.repository.UserRepository;
 
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.repository.MongoRepository;
 
 @Service
 public class UserServiceImpl implements UserService 
@@ -28,7 +23,10 @@ public class UserServiceImpl implements UserService
 	public User saveUser(User user) 
 	{
 		userModel = new User();
+		
+		//setting id 
 		userModel.setId(user.getId());
+		
 		if (Objects.nonNull(user.getName()) && !"".equalsIgnoreCase(user.getName())) 
 	    {
 			userModel.setName(user.getName());
@@ -174,7 +172,8 @@ public class UserServiceImpl implements UserService
 		
 	}
 	
-	public User findUserByResetToken(String resetToken) {
+	public User findUserByResetToken(String resetToken) 
+	{
 		return userRepository.findByResetToken(resetToken);
 	}
 }

@@ -1,5 +1,5 @@
 package com.example.AuthenticationApp.service;
 
-public class UserServiceImpl {
+public class EmailService {
 
 }

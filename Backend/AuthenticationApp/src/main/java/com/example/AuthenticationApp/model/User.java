@@ -15,6 +15,7 @@ public class User {
 	private String name;
 	private String bio;
 	private String phone;
+	private String resetToken;
 	
 	@NotNull
 	@Email
@@ -23,7 +24,7 @@ public class User {
 	@NotNull
 	private String password;
 	
-	public User(String id, String photo, String name, String bio, String phone,String email,String password) {
+	public User(String id, String photo, String name, String bio, String phone,String email,String password, String resetToken) {
 		super();
 		this.id = id;
 		this.photo = photo;
@@ -32,11 +33,18 @@ public class User {
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
+		this.resetToken = resetToken;
 	}
 	
 	public User() {
 	}
 	
+	public String getResetToken() {
+		return resetToken;
+	}
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
 	public String getId() {
 		return id;
 	}

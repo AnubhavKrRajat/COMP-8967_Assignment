@@ -1,5 +1,6 @@
 package com.example.AuthenticationApp.service;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -138,5 +139,9 @@ public class UserServiceImpl implements UserService
 			return false;
 		}
 		
+	}
+	
+	public Optional findUserByResetToken(String resetToken) {
+		return userRepository.findByResetToken(resetToken);
 	}
 }

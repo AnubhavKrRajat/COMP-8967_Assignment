@@ -18,7 +18,7 @@ public class userController {
 	
 	//Registration
     @PostMapping("/RegisterUser")
-    public ResponseEntity saveUser(@Valid @RequestBody User user)
+    public ResponseEntity<?> saveUser(@Valid @RequestBody User user)
     {
     	if(userService.CheckUserAlreadyExist(user.getEmail())){
     		
@@ -34,14 +34,13 @@ public class userController {
     
    // Login User and return user data
     @PostMapping("/LoginUser")
-    @ResponseBody
-    public ResponseEntity getUserDetailsAndLogin(@Valid @RequestBody User user)
+    public ResponseEntity<?> getUserDetailsAndLogin(@Valid @RequestBody User user)
     {
     	User userData = new User();
         userData = userService.fetchUserDetails(user.getEmail(), user.getPassword());
         if(userData!=null)
         {
-        	return new ResponseEntity<>(userData,HttpStatus.OK);
+        	return new ResponseEntity<User>(userData,HttpStatus.OK);
         }
         else
         {
@@ -50,11 +49,11 @@ public class userController {
     }
     
     @PutMapping("/UpdateUser") 
-    public ResponseEntity updateUserData(@Valid @RequestBody User user)
+    public ResponseEntity<?> updateUserData(@Valid @RequestBody User user)
     {
     	User userData = new User();
     	userData = userService.updateUser(user, user.getEmail());
-    	return new ResponseEntity<>(userData,HttpStatus.OK);
+    	return new ResponseEntity<User>(userData,HttpStatus.OK);
     	}
     	 
 

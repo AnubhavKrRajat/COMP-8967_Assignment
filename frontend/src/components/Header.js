@@ -11,14 +11,19 @@ const Header = () => {
   let navigate = useNavigate();
   const [loginData, setLoginData] = useState("");
   useEffect(() => {
-    localStorage.getItem("email")
-      ? setLoginData(localStorage.getItem("email"))
+    localStorage.getItem("name")
+      ? setLoginData(localStorage.getItem("name"))
       : setLoginData("");
   }, [loginData]);
 
   const handleLogout = () => {
     navigate("/");
+    localStorage.removeItem("name");
     localStorage.removeItem("email");
+    localStorage.removeItem("bio");
+    localStorage.removeItem("phone");
+    localStorage.removeItem("photo");
+
     window.location.reload(false);
   };
   const sendToProfile = (e) => {

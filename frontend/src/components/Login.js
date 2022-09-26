@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React, { useState } from "react";
-import { Link, Routes, Route } from "react-router-dom";
-import Home from "./Home";
+import { Link } from "react-router-dom";
+
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
@@ -10,6 +10,7 @@ const Login = () => {
   const [err, setErr] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginData, setLoginData] = useState();
 
   let navigate = useNavigate();
 
@@ -19,6 +20,7 @@ const Login = () => {
     console.log(email, password);
     try {
       console.log("sending request");
+
       let resp = await fetch(
         "https://internship-project-auth.herokuapp.com/LoginUser",
         {
@@ -30,18 +32,24 @@ const Login = () => {
           }),
         }
       );
+      let data = await resp.json();
 
       if (resp.status === 404) {
         setErr("User not Found");
       } else {
         setErr("is logged in");
-        console.log(resp.body);
-        localStorage.setItem("email", `${email}`);
+
+        localStorage.setItem("name", `${data.name}`);
+        localStorage.setItem("email", `${data.email}`);
+        localStorage.setItem("bio", `${data.bio}`);
+        localStorage.setItem("phone", `${data.phone}`);
+        localStorage.setItem("photo", `${data.photo}`);
         alert("User Logged In Successfully!");
         return navigate("/");
       }
     } catch (e) {
-      console.log(err.message);
+      // console.log(err.message);
+      alert("User not Found");
     }
   };
 
@@ -98,14 +106,14 @@ const Login = () => {
             <div className="vl"></div>
           </div>
           <div className="login__google">
-            <GoogleLogin
+            {/* <GoogleLogin
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               buttonText="Sign In with Google"
               onSuccess={handleOauth}
               onFailure={handleOauthFailure}
               cookiePolicy={"single_host_origin"}
-            >
-              {/* <Button
+            > */}
+            {/* <Button
                 type="submit"
                 onClick={handleOauth}
                 className="login__button__google"
@@ -116,9 +124,9 @@ const Login = () => {
                   src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-google-icon-logo-png-transparent-svg-vector-bie-supply-14.png"
                   alt=""
                 /> */}
-              {/* Sign In with Google
+            {/* Sign In with Google
               </Button> */}
-            </GoogleLogin>
+            {/* </GoogleLogin> */}
           </div>
         </div>
       </div>

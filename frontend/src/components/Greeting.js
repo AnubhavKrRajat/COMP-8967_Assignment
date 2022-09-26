@@ -3,8 +3,8 @@ import "./Greeting.css";
 const Greeting = () => {
   const [loginData, setLoginData] = useState("");
   useEffect(() => {
-    localStorage.getItem("email")
-      ? setLoginData(localStorage.getItem("email"))
+    localStorage.getItem("name")
+      ? setLoginData(localStorage.getItem("name"))
       : setLoginData("");
   }, [loginData]);
   return (

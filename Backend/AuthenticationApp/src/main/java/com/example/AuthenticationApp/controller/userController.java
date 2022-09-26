@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import com.example.AuthenticationApp.model.User;
 import com.example.AuthenticationApp.service.UserService;
 
-@CrossOrigin
-@Controller
+
+@RestController
+@CrossOrigin(origins = "*")
 public class userController {
 	@Autowired 
 	private UserService userService;

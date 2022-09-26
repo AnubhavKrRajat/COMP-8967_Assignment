@@ -14,87 +14,96 @@ public class UserServiceImpl implements UserService
 	@Autowired
 	UserRepository userRepository;
 	
-	User saveUser;
+	User userModel;
 	
 	@Override
 	public User saveUser(User user) 
 	{
+		userModel = new User();
 		if (Objects.nonNull(user.getName()) && !"".equalsIgnoreCase(user.getName())) 
 	    {
-			saveUser.setName(user.getName());
+			userModel.setName(user.getName());
 	    }
 	        
 	    if (Objects.nonNull(user.getEmail()) && !"".equalsIgnoreCase(user.getEmail())) 
 	    {
-	    	saveUser.setEmail(user.getEmail());
+	    	userModel.setEmail(user.getEmail());
 	    }
 	        
 	    if (Objects.nonNull(user.getPhoto()) && !"".equalsIgnoreCase(user.getPhoto())) 
 	    {
-	    	saveUser.setPhoto(user.getPhoto());
+	    	userModel.setPhoto(user.getPhoto());
 	    }
 	        
 	    if (Objects.nonNull(user.getBio()) && !"".equalsIgnoreCase(user.getBio())) 
 	    {
-	      	saveUser.setBio(user.getBio());
+	    	userModel.setBio(user.getBio());
 	    }
 	        
 	    if (Objects.nonNull(user.getPhone()) && !"".equalsIgnoreCase(user.getPhone())) 
 	    {
-	     	saveUser.setPhone(user.getPhone());
+	    	userModel.setPhone(user.getPhone());
 	    }
 	        
 	    if (Objects.nonNull(user.getPassword()) && !"".equalsIgnoreCase(user.getPassword())) 
 	    {
-	     	saveUser.setPassword(user.getPassword());
+	    	userModel.setPassword(user.getPassword());
 	    }
-	    return userRepository.save(saveUser);
+	    return userRepository.save(userModel);
 	}
 
 	@Override
 	public User fetchUserDetails(String email, String password) 
 	{
-		return userRepository.findByEmailAndPassword(email,password);
+		User user = new User();
+		userModel = new User();
+		user = userRepository.findByEmailAndPassword(email,password);
+		userModel.setBio(user.getBio());
+		userModel.setName(user.getName());
+		userModel.setEmail(user.getEmail());
+		userModel.setPhone(user.getPhone());
+		userModel.setPhoto(user.getPhoto());
+		return userModel;
 	}
 
 	@Override
 	public User updateUser(User user, String email) 
 	{
 		{
-			 
-	        saveUser = userRepository.findByEmail(email);
+			userModel = new User(); 
+			userModel = userRepository.findByEmail(email);
 	 
 	        if (Objects.nonNull(user.getName()) && !"".equalsIgnoreCase(user.getName())) 
 	        {
-	        	saveUser.setName(user.getName());
+	        	userModel.setName(user.getName());
 	        }
 	        
 	        if (Objects.nonNull(user.getEmail()) && !"".equalsIgnoreCase(user.getEmail())) 
 	        {
-	        	saveUser.setEmail(user.getEmail());
+	        	userModel.setEmail(user.getEmail());
 	        }
 	        
 	        if (Objects.nonNull(user.getPhoto()) && !"".equalsIgnoreCase(user.getPhoto())) 
 	        {
-	        	saveUser.setPhoto(user.getPhoto());
+	        	userModel.setPhoto(user.getPhoto());
 	        }
 	        
 	        if (Objects.nonNull(user.getBio()) && !"".equalsIgnoreCase(user.getBio())) 
 	        {
-	        	saveUser.setBio(user.getBio());
+	        	userModel.setBio(user.getBio());
 	        }
 	        
 	        if (Objects.nonNull(user.getPhone()) && !"".equalsIgnoreCase(user.getPhone())) 
 	        {
-	        	saveUser.setPhone(user.getPhone());
+	        	userModel.setPhone(user.getPhone());
 	        }
 	        
 	        if (Objects.nonNull(user.getPassword()) && !"".equalsIgnoreCase(user.getPassword())) 
 	        {
-	        	saveUser.setPassword(user.getPassword());
+	        	userModel.setPassword(user.getPassword());
 	        }
 	    
-	        return userRepository.save(saveUser);
+	        return userRepository.save(userModel);
 		}
 	}
 

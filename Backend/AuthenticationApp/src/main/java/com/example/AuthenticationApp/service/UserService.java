@@ -18,6 +18,8 @@ public interface UserService {
 	User updateUser(User user, String email);
 	
 	//reset token finding
-	public Optional<User> findUserByResetToken(String resetToken);
+	User findUserByResetToken(String resetToken);
+	//Login User and get details of user
+	User findUserByEmail(String email);
 	
 }

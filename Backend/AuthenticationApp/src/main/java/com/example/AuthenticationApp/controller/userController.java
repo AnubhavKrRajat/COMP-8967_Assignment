@@ -1,12 +1,20 @@
 package com.example.AuthenticationApp.controller;
-import javax.validation.Valid;
+import java.net.URI;
+import java.util.Optional;
+import java.util.UUID;
 
+import javax.validation.Valid;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.example.AuthenticationApp.model.User;
+import com.example.AuthenticationApp.service.EmailService;
 import com.example.AuthenticationApp.service.UserService;
 
 
@@ -15,6 +23,50 @@ import com.example.AuthenticationApp.service.UserService;
 public class userController {
 	@Autowired 
 	private UserService userService;
+	
+	@Autowired
+	private EmailService emailService;
+	
+	HttpServletRequest request;
+	
+	@PostMapping("/ForgotPassword")
+	public ResponseEntity<?> ForgotPassword(@Valid @RequestBody User user) {
+		
+		User userData = new User();
+		// Lookup user in database by e-mail
+		userData = userService.findUserByEmail(user.getEmail());
+
+		if (userData==null) 
+		{
+			return new ResponseEntity<>("No User Found", HttpStatus.CONFLICT);
+		} 
+		
+		else 
+		{
+			
+			// Generate random 36-character string token for reset password 
+			userData.setResetToken(UUID.randomUUID().toString());
+
+			// Save token to database	
+			userService.saveUser(userData);
+			String appUrl;
+			appUrl = request.getScheme() + "://" + request.getServerName();
+						
+			// Email message
+			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
+			passwordResetEmail.setFrom("support@assignment1.com");
+			passwordResetEmail.setTo(user.getEmail());
+			passwordResetEmail.setSubject("Password Reset Request");
+			passwordResetEmail.setText("To reset your password, click the link below:\n" + appUrl
+					+ "/reset?token=" + user.getResetToken());
+			
+			emailService.sendEmail(passwordResetEmail);
+
+			// Add success message to view
+			return new ResponseEntity<>("Link have been sent to user successfully", HttpStatus.ACCEPTED);
+		}
+
+	}
 	
 	//Registration
     @PostMapping("/RegisterUser")

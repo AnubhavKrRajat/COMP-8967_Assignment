@@ -58,6 +58,10 @@ public class UserServiceImpl implements UserService
 	    {
 	    	userModel.setPassword(user.getPassword());
 	    }
+	    if (Objects.nonNull(user.getResetToken()) && !"".equalsIgnoreCase(user.getResetToken())) 
+	    {
+	    	userModel.setResetToken(user.getResetToken());
+	    }
 	    return userRepository.save(userModel);
 	}
 
@@ -80,6 +84,31 @@ public class UserServiceImpl implements UserService
 			userModel.setPhone(user.getPhone());
 			userModel.setPhoto(user.getPhoto());
 			userModel.setId(user.getId());
+			userModel.setResetToken(user.getResetToken());
+		}
+		
+		return userModel;
+	}
+	
+	@Transactional
+	public User findUserByEmail(String email) 
+	{
+		User user = new User();
+		user = userRepository.findByEmail(email);
+		if(Objects.isNull(user))
+		{
+			return user;
+		}
+		else
+		{
+			userModel = new User();
+			userModel.setBio(user.getBio());
+			userModel.setName(user.getName());
+			userModel.setEmail(user.getEmail());
+			userModel.setPhone(user.getPhone());
+			userModel.setPhoto(user.getPhoto());
+			userModel.setId(user.getId());
+			userModel.setResetToken(user.getResetToken());
 		}
 		
 		return userModel;
@@ -122,6 +151,10 @@ public class UserServiceImpl implements UserService
 	        {
 	        	userModel.setPassword(user.getPassword());
 	        }
+	        if (Objects.nonNull(user.getResetToken()) && !"".equalsIgnoreCase(user.getResetToken())) 
+		    {
+		    	userModel.setResetToken(user.getResetToken());
+		    }
 	    
 	        return userRepository.save(userModel);
 		}
@@ -141,7 +174,7 @@ public class UserServiceImpl implements UserService
 		
 	}
 	
-	public Optional findUserByResetToken(String resetToken) {
+	public User findUserByResetToken(String resetToken) {
 		return userRepository.findByResetToken(resetToken);
 	}
 }

@@ -27,7 +27,6 @@ public class userController {
 	@Autowired
 	private EmailService emailService;
 	
-	HttpServletRequest request;
 	
 	@PostMapping("/ForgotPassword")
 	public ResponseEntity<?> ForgotPassword(@Valid @RequestBody User user) {
@@ -46,11 +45,10 @@ public class userController {
 			
 			// Generate random 36-character string token for reset password 
 			userData.setResetToken(UUID.randomUUID().toString());
-
 			// Save token to database	
 			userService.saveUser(userData);
 			String appUrl;
-			appUrl = request.getScheme() + "://" + request.getServerName();
+			appUrl = "http://internship-project-auth.herokuapp.com";
 						
 			// Email message
 			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();

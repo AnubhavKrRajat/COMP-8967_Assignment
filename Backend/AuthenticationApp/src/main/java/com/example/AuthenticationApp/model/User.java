@@ -21,7 +21,6 @@ public class User {
 	@Email
 	private String email;
 	
-	@NotNull
 	private String password;
 	
 	public User(String id, String photo, String name, String bio, String phone,String email,String password, String resetToken) {

@@ -52,8 +52,9 @@ public class userController {
     @PutMapping("/UpdateUser") 
     public ResponseEntity updateUserData(@Valid @RequestBody User user)
     {
-    		userService.updateUser(user, user.getEmail());
-    		return new ResponseEntity<>("User Info Updated Successfully",HttpStatus.OK);
+    	User userData = new User();
+    	userData = userService.updateUser(user, user.getEmail());
+    	return new ResponseEntity<>(userData,HttpStatus.OK);
     	}
     	 
 

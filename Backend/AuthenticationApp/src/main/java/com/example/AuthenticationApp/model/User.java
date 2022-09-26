@@ -7,8 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "UserDB")
 public class User {
+	
 	@Id
-	private String Id;
+	private String id;
 	
 	private String photo;
 	private String name;
@@ -19,9 +20,12 @@ public class User {
 	@Email
 	private String email;
 	
+	@NotNull
+	private String password;
+	
 	public User(String id, String photo, String name, String bio, String phone,String email,String password) {
 		super();
-		Id = id;
+		this.id = id;
 		this.photo = photo;
 		this.name = name;
 		this.bio = bio;
@@ -32,13 +36,12 @@ public class User {
 	
 	public User() {
 	}
-	private String password;
 	
 	public String getId() {
-		return Id;
+		return id;
 	}
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 	public String getPhoto() {
 		return photo;

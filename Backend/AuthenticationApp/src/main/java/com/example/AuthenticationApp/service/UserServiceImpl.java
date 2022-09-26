@@ -3,9 +3,15 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.AuthenticationApp.model.User;
 import com.example.AuthenticationApp.repository.UserRepository;
+
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 @Service
 public class UserServiceImpl implements UserService 
@@ -17,9 +23,11 @@ public class UserServiceImpl implements UserService
 	User userModel;
 	
 	@Override
+	@Transactional
 	public User saveUser(User user) 
 	{
 		userModel = new User();
+		userModel.setId(user.getId());
 		if (Objects.nonNull(user.getName()) && !"".equalsIgnoreCase(user.getName())) 
 	    {
 			userModel.setName(user.getName());
@@ -53,26 +61,37 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
+	@Transactional
 	public User fetchUserDetails(String email, String password) 
 	{
 		User user = new User();
-		userModel = new User();
 		user = userRepository.findByEmailAndPassword(email,password);
-		userModel.setBio(user.getBio());
-		userModel.setName(user.getName());
-		userModel.setEmail(user.getEmail());
-		userModel.setPhone(user.getPhone());
-		userModel.setPhoto(user.getPhoto());
+		if(Objects.isNull(user))
+		{
+			return user;
+		}
+		else
+		{
+			userModel = new User();
+			userModel.setBio(user.getBio());
+			userModel.setName(user.getName());
+			userModel.setEmail(user.getEmail());
+			userModel.setPhone(user.getPhone());
+			userModel.setPhoto(user.getPhoto());
+			userModel.setId(user.getId());
+		}
+		
 		return userModel;
 	}
 
 	@Override
+	@Transactional
 	public User updateUser(User user, String email) 
 	{
 		{
 			userModel = new User(); 
 			userModel = userRepository.findByEmail(email);
-	 
+			
 	        if (Objects.nonNull(user.getName()) && !"".equalsIgnoreCase(user.getName())) 
 	        {
 	        	userModel.setName(user.getName());

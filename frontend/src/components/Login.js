@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 
 const Login = () => {
-  const [err, setErr] = useState();
+  const [err, setErr] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginData, setLoginData] = useState();
@@ -32,13 +32,12 @@ const Login = () => {
           }),
         }
       );
-      let data = await resp.json();
 
       if (resp.status === 404) {
         setErr("User not Found");
       } else {
+        let data = await resp.json();
         setErr("is logged in");
-
         localStorage.setItem("name", `${data.name}`);
         localStorage.setItem("email", `${data.email}`);
         localStorage.setItem("bio", `${data.bio}`);
@@ -48,8 +47,8 @@ const Login = () => {
         return navigate("/");
       }
     } catch (e) {
-      // console.log(err.message);
-      alert("User not Found");
+      setErr(e.message);
+      // alert("User not Found");
     }
   };
 

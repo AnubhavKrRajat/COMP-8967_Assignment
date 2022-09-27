@@ -11,9 +11,7 @@ const Header = () => {
   let navigate = useNavigate();
   const [loginData, setLoginData] = useState("");
   useEffect(() => {
-    localStorage.getItem("name")
-      ? setLoginData(localStorage.getItem("name"))
-      : setLoginData("");
+    setLoginData(localStorage.getItem("name") || "");
   }, [loginData]);
 
   const handleLogout = () => {
@@ -26,10 +24,9 @@ const Header = () => {
 
     window.location.reload(false);
   };
-  const sendToProfile = (e) => {
-    e.preventDefault();
-    navigate("/profile");
-  };
+
+  const sendToProfile = (e) => navigate("/profile");
+
   return (
     <div className="header">
       <img className="header__logo" src="header-logo.png" alt="" />

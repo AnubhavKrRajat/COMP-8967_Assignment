@@ -28,7 +28,7 @@ public class userController {
 		
 		User userData = new User();
 		
-		//finding user through email
+		//Find user by their email-id
 		userData = userService.findUserByEmail(user.getEmail());
 
 		if (userData==null) 
@@ -42,7 +42,7 @@ public class userController {
 			// Generate random 36-character string token for reset password 
 			userData.setResetToken(UUID.randomUUID().toString());
 			
-			// Save token to database	
+			// Save token in database	
 			userService.saveUser(userData);
 						
 			// Email message
@@ -52,7 +52,7 @@ public class userController {
 			passwordResetEmail.setSubject("Password Reset Code");
 			passwordResetEmail.setText("Your Reset Password Code: " + userData.getResetToken());
 			
-			//sending email through mail service of java
+			//sending email through inbuilt mail service of java
 			emailService.sendEmail(passwordResetEmail);
 
 			//returning http status with message

@@ -55,6 +55,6 @@
 .header__link {
   text-decoration: none;
 }
-.buttton_logout {
-  color: red !important;
+.button_logout {
+  background-color: rgb(117, 71, 71) !important;
 }

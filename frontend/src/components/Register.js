@@ -36,6 +36,8 @@ const Register = () => {
       if (resp.status === 200) {
         alert("User Registered Successfull");
         return navigate("/login");
+      } else if (resp.status === 409) {
+        alert("User Already Exists");
       } else {
         alert("User Registration Unsuccessfull");
       }
@@ -43,7 +45,7 @@ const Register = () => {
       return setErr(`invalid request ${resp}`);
     } catch (e) {
       console.log(err);
-      alert(`error: ${e.message}`)
+      alert(`error: ${e.message}`);
       setErr(`error: ${e.message}`);
     }
   };
@@ -55,7 +57,7 @@ const Register = () => {
       <div className="register__container">
         <div className="register__container__form">
           <h1>REGISTER</h1>
-          <p> {err} </p>
+
           <form onSubmit={handleRegistration} action="#">
             <label for="fullname">Full Name</label>
             <input

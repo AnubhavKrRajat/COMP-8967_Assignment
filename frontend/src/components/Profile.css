@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.card {
+  width: 50%;
+  background-color: #efefef;
+  border-radius: 15px;
+}
+img {
+  border-radius: 15px;
+  margin: 20px;
+}
+.name {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.edit__button {
+  width: 50%;
+  height: 45px;
+  border: 1px solid;
+  margin-top: 15px !important;
+  border-color: beige;
+}
+.edit__btn{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+h5 {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: medium;
+  color: rgb(36, 36, 36);
+}
+input {
+  height: 40px;
+  margin-bottom: 15px;
+  background-color: white;
+  width: 98%;
+  border: solid 0.5px lightgray;
+  outline: none;
+  border-width: 0.5px;
+  padding: 5px;
+  box-shadow: 2px 2px 2px #888888;
+  border-radius: 3px;
+}

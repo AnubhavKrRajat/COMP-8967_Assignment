@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+}
+.greeting {
+  display: flex;
+  /* border: 1px solid red; */
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+.welcome_message {
+  height: fit-screen;
+  text-transform: uppercase;
+  color: rgb(36, 36, 36);
+}

@@ -28,7 +28,7 @@ function Profile() {
       let resp = await fetch(
         "https://internship-project-auth.herokuapp.com/UpdateUser",
         {
-          method: "POST",
+          method: "PUT",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             name: fullname,
@@ -40,8 +40,8 @@ function Profile() {
         }
       );
       if (resp.status === 200) {
-        alert("Updaed Successfull");
-        return navigate("/");
+        alert("Updated Successfull");
+        return navigate("/login");
       } else {
         alert("Update Unsuccessfull");
       }
